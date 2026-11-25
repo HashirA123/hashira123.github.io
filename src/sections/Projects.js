@@ -19,30 +19,11 @@ const projects = [
   { title: "EduConnect", category: "CalgaryHacks 2021", description: "A project built for CalgaryHacks 2021.", image: eduConnect, url: "https://devpost.com/software/educonnect-vu8xic" },
 ];
 
-export function FeaturedProjects() {
-  return (
-    <ul className="featured-list">
-      {projects.slice(0, 3).map(({ title, description, image, url }) => (
-        <li key={title}>
-          <a className="featured-project" href={url} target="_blank" rel="noopener noreferrer">
-            <img src={image} alt="" loading="lazy" />
-            <div>
-              <h3>{title}</h3>
-              <p>{description}</p>
-            </div>
-            <ArrowOutward />
-          </a>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
 function ProjectGrid() {
   return (
     <div className="project-grid">
       {projects.map(({ title, category, description, image, url }) => (
-        <article key={title}>
+        <article className="reveal" key={title}>
           <a className="project-card" href={url} target="_blank" rel="noopener noreferrer">
             <div className="project-image"><img src={image} alt="" loading="lazy" /></div>
             <div className="project-body">
@@ -59,10 +40,10 @@ function ProjectGrid() {
 
 function Projects() {
   return (
-    <section className="container inner-page">
-      <header className="page-intro">
-        <h1>Projects</h1>
-        <p>A collection of my work in machine learning, full-stack development, and data systems.</p>
+    <section id="projects" className="container content-section" aria-labelledby="projects-heading">
+      <header className="section-intro reveal">
+        <h2 id="projects-heading">Projects</h2>
+        <p>Machine learning experiments, full-stack applications, and data systems.</p>
       </header>
       <ProjectGrid />
     </section>

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
 import LightModeOutlined from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlined from "@mui/icons-material/DarkModeOutlined";
 import ArrowOutward from "@mui/icons-material/ArrowOutward";
@@ -7,10 +6,10 @@ import Menu from "@mui/icons-material/Menu";
 import Close from "@mui/icons-material/Close";
 
 const links = [
-  ["/", "Home"],
-  ["/about", "About"],
-  ["/projects", "Projects"],
-  ["/contact", "Contact"],
+  ["#home", "Home"],
+  ["#about", "About"],
+  ["#projects", "Projects"],
+  ["#contact", "Contact"],
 ];
 
 function Navbar({ theme, onToggleTheme }) {
@@ -19,15 +18,15 @@ function Navbar({ theme, onToggleTheme }) {
   return (
     <header className="site-header">
       <nav className="nav-wrapper container" aria-label="Main navigation">
-        <NavLink to="/" className="brand" onClick={() => setMenuOpen(false)}>
+        <a href="#home" className="brand" onClick={() => setMenuOpen(false)}>
           Hashir Ahmed
-        </NavLink>
+        </a>
         <ul id="site-links" className={`nav-links ${menuOpen ? "open" : ""}`}>
           {links.map(([path, label]) => (
             <li key={path}>
-              <NavLink to={path} end={path === "/"} onClick={() => setMenuOpen(false)}>
+              <a href={path} onClick={() => setMenuOpen(false)}>
                 {label}
-              </NavLink>
+              </a>
             </li>
           ))}
         </ul>

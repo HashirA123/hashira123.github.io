@@ -1,34 +1,27 @@
-import { Link } from "react-router-dom";
-import ArrowForward from "@mui/icons-material/ArrowForward";
+import ArrowDownward from "@mui/icons-material/ArrowDownward";
+import ArrowOutward from "@mui/icons-material/ArrowOutward";
 import portrait from "../images/myFace.jpg";
-import { FeaturedProjects } from "./Projects";
 
 function Home() {
   return (
-    <>
-      <section className="hero container">
-        <div className="hero-content">
-          <h1>Hashir Ahmed</h1>
-          <p className="hero-description">
-            I’m a machine learning engineer and a master’s student at the University of Waterloo.
-            My research compares methods that suggest what someone could change to get a
-            different outcome from a model.
-          </p>
-          <div className="hero-actions">
-            <Link className="text-link" to="/about">About me <ArrowForward /></Link>
-            <a className="text-link" href={`${process.env.PUBLIC_URL}/Hashir-Ahmed_Resume.pdf`}>Résumé (PDF)</a>
-          </div>
+    <section id="home" className="hero container" aria-labelledby="home-heading">
+      <div className="hero-content">
+        <p className="hero-role">Machine learning engineer</p>
+        <h1 id="home-heading">Hashir Ahmed</h1>
+        <p className="hero-description">
+          I build machine learning systems and study how people can act on a model’s decisions.
+        </p>
+        <div className="hero-actions">
+          <a className="button button-accent" href="#projects">View projects <ArrowDownward /></a>
+          <a className="text-link" href={`${process.env.PUBLIC_URL}/Hashir-Ahmed_Resume.pdf`}>
+            Résumé <ArrowOutward />
+          </a>
         </div>
-        <img className="home-portrait" src={portrait} alt="Hashir Ahmed" />
-      </section>
-      <section className="featured container">
-        <div className="section-heading">
-          <h2>Selected projects</h2>
-          <Link className="text-link" to="/projects">All projects <ArrowForward /></Link>
-        </div>
-        <FeaturedProjects />
-      </section>
-    </>
+      </div>
+      <div className="hero-portrait">
+        <img src={portrait} width="1200" height="1600" alt="Hashir Ahmed" />
+      </div>
+    </section>
   );
 }
 

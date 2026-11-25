@@ -1,5 +1,4 @@
 import "./App.css";
-import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import Navbar from "./components/Navbar";
@@ -9,25 +8,11 @@ import Experience from "./sections/Experience";
 import Projects from "./sections/Projects";
 import Contact from "./sections/Contact";
 
-function Page() {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return (
-    <main id="main" className="page-shell" tabIndex={-1}>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<Experience />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </main>
-  );
-}
+const legacySections = {
+  "/about": "#about",
+  "/projects": "#projects",
+  "/contact": "#contact",
+};
 
 function App() {
   const [theme, setTheme] = useState(() =>
@@ -39,13 +24,31 @@ function App() {
     window.localStorage.setItem("theme", theme);
   }, [theme]);
 
+  useEffect(() => {
+    const base = (process.env.PUBLIC_URL || "").replace(/\/$/, "");
+    const path = window.location.pathname.slice(base.length).replace(/\/$/, "");
+    const section = legacySections[path];
+
+    if (section) {
+      window.history.replaceState(null, "", `${base}/${window.location.search}${section}`);
+    }
+
+    const target = document.getElementById(window.location.hash.slice(1));
+    target?.scrollIntoView({ behavior: "instant" });
+  }, []);
+
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <>
       <a className="skip-link" href="#main">Skip to content</a>
       <Navbar theme={theme} onToggleTheme={() => setTheme(theme === "light" ? "dark" : "light")} />
-      <Page />
+      <main id="main" className="page-shell" tabIndex={-1}>
+        <Home />
+        <Experience />
+        <Projects />
+        <Contact />
+      </main>
       <Footer />
-    </BrowserRouter>
+    </>
   );
 }
 

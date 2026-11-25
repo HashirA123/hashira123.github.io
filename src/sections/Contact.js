@@ -11,16 +11,16 @@ const channels = [
 
 function Contact() {
   return (
-    <section className="container inner-page">
-      <header className="page-intro">
-        <h1>Let’s talk</h1>
+    <section id="contact" className="container content-section contact-section" aria-labelledby="contact-heading">
+      <header className="section-intro reveal">
+        <h2 id="contact-heading">Get in touch</h2>
         <p>Email is the best way to reach me about research or engineering work.</p>
       </header>
-      <div className="project-grid">
+      <div className="project-grid reveal">
         {channels.map(([Icon, name, handle, url]) => (
           <a className="contact-card" key={name} href={url}>
             <Icon />
-            <h2>{name} <ArrowOutward /></h2>
+            <h3>{name} <ArrowOutward /></h3>
             <p>{handle}</p>
           </a>
         ))}
