@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.35656557.css",
-    "main.js": "/static/js/main.cb173e42.js",
+    "main.css": "/static/css/main.6e5d0cbe.css",
+    "main.js": "/static/js/main.126472ca.js",
     "static/media/HomeLoggedIn.png": "/static/media/HomeLoggedIn.5dd800fb4991449c7958.png",
     "static/media/Capstone.png": "/static/media/Capstone.dd0d4215e0cac231123a.png",
     "static/media/myFace.jpg": "/static/media/myFace.bc1ae95972ad92a88262.jpg",
@@ -12,11 +12,11 @@
     "static/media/Ad_Skipper.png": "/static/media/Ad_Skipper.b4116717ff05218e556a.png",
     "static/media/EduConnect.jpg": "/static/media/EduConnect.e1c1b5b1984261df6164.jpg",
     "index.html": "/index.html",
-    "main.35656557.css.map": "/static/css/main.35656557.css.map",
-    "main.cb173e42.js.map": "/static/js/main.cb173e42.js.map"
+    "main.6e5d0cbe.css.map": "/static/css/main.6e5d0cbe.css.map",
+    "main.126472ca.js.map": "/static/js/main.126472ca.js.map"
   },
   "entrypoints": [
-    "static/css/main.35656557.css",
-    "static/js/main.cb173e42.js"
+    "static/css/main.6e5d0cbe.css",
+    "static/js/main.126472ca.js"
   ]
 }
