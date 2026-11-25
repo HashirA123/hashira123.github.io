@@ -13,8 +13,7 @@ function Experience() {
     <section className="container inner-page">
       <div className="about-intro">
         <header className="page-intro">
-          <p className="eyebrow">About me</p>
-          <h1>Hi, I’m Hashir<span>.</span></h1>
+          <h1>Hi, I’m Hashir</h1>
           <p>I’m a machine learning engineer and a master’s student in Electrical and Computer Engineering at the University of Waterloo. I research robust algorithmic recourse and benchmark methods that suggest steps people can take to change a model’s decision.</p>
           <p>I studied software engineering at the University of Calgary and have worked on causal ML, LLM evaluation, and data pipelines.</p>
           <a className="button button-outline" href={`${process.env.PUBLIC_URL}/Hashir-Ahmed_Resume.pdf`}>View résumé <ArrowOutward /></a>
@@ -22,7 +21,7 @@ function Experience() {
         <img className="portrait" src={portrait} alt="Hashir Ahmed" />
       </div>
       <section className="experience">
-        <h2>Experience<span>.</span></h2>
+        <h2>Experience</h2>
         {experience.map(([company, role, dates, description]) => (
           <article className="experience-row" key={dates}>
             <div><p className="eyebrow">{company}</p><p>{dates}</p></div>

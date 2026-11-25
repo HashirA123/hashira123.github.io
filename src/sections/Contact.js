@@ -13,9 +13,8 @@ function Contact() {
   return (
     <section className="container inner-page">
       <header className="page-intro">
-        <p className="eyebrow">Contact</p>
-        <h1>Let’s talk<span>.</span></h1>
-        <p>I’d love to hear about research collaborations, engineering opportunities, or what you’re building.</p>
+        <h1>Let’s talk</h1>
+        <p>Email is the best way to reach me about research or engineering work.</p>
       </header>
       <div className="project-grid">
         {channels.map(([Icon, name, handle, url]) => (

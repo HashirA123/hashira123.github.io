@@ -20,8 +20,7 @@ function Navbar({ theme, onToggleTheme }) {
     <header className="site-header">
       <nav className="nav-wrapper container" aria-label="Main navigation">
         <NavLink to="/" className="brand" onClick={() => setMenuOpen(false)}>
-          <span className="brand-mark" aria-hidden="true">ha<span>.</span></span>
-          <span>Hashir Ahmed</span>
+          Hashir Ahmed
         </NavLink>
         <ul id="site-links" className={`nav-links ${menuOpen ? "open" : ""}`}>
           {links.map(([path, label]) => (
