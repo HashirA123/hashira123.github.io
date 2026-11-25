@@ -1,8 +1,6 @@
 import "./App.css";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Aos from "aos";
-import "aos/dist/aos.css";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -11,55 +9,42 @@ import Experience from "./sections/Experience";
 import Projects from "./sections/Projects";
 import Contact from "./sections/Contact";
 
-const getInitialTheme = () => {
-  if (typeof window === "undefined") {
-    return "light";
-  }
+function Page() {
+  const { pathname } = useLocation();
 
-  const savedTheme = window.localStorage.getItem("theme");
-  if (savedTheme === "light" || savedTheme === "dark") {
-    return savedTheme;
-  }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-};
+  return (
+    <main id="main" className="page-shell" tabIndex={-1}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<Experience />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </main>
+  );
+}
 
 function App() {
-  const [theme, setTheme] = useState(getInitialTheme);
+  const [theme, setTheme] = useState(() =>
+    window.localStorage.getItem("theme") === "light" ? "light" : "dark"
+  );
 
   useEffect(() => {
-    Aos.init({
-      duration: 900,
-      once: true,
-      easing: "ease-out-cubic",
-      offset: 70,
-    });
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
+    document.documentElement.dataset.theme = theme;
     window.localStorage.setItem("theme", theme);
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
-  };
-
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <div className="App">
-        <Navbar theme={theme} onToggleTheme={toggleTheme} />
-        <main className="page-shell">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<Experience />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <a className="skip-link" href="#main">Skip to content</a>
+      <Navbar theme={theme} onToggleTheme={() => setTheme(theme === "light" ? "dark" : "light")} />
+      <Page />
+      <Footer />
     </BrowserRouter>
   );
 }

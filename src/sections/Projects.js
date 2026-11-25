@@ -1,9 +1,4 @@
-import React from "react";
-import "../styles/Projects.css";
-import ProjectBox from "../components/ProjectBox";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-
+import ArrowOutward from "@mui/icons-material/ArrowOutward";
 import capstone from "../images/Capstone.png";
 import scholarSpace from "../images/HomeLoggedIn.png";
 import adSkipper from "../images/Ad_Skipper.png";
@@ -13,49 +8,45 @@ import dbms from "../images/dbms.jpg";
 import ml from "../images/ML.jpg";
 import mlPlayground from "../images/ML_playground.png";
 
-function Projects() {
-  const responsive = {
-    desktop: { breakpoint: { max: 3000, min: 1100 }, items: 3, slidesToSlide: 1 },
-    tablet: { breakpoint: { max: 1100, min: 768 }, items: 2, slidesToSlide: 1 },
-    mobile: { breakpoint: { max: 768, min: 0 }, items: 1, slidesToSlide: 1 },
-  };
+const projects = [
+  { title: "ML Playground", category: "ML Infrastructure", description: "A Docker image for experimenting with machine learning in a portable environment.", image: mlPlayground, url: "https://hub.docker.com/repository/docker/hashira123/ml_playground/general" },
+  { title: "ScholarSpace", category: "Full-stack", description: "An online learning community built with MERN, Apollo GraphQL, and Google OAuth.", image: scholarSpace, url: "https://github.com/HashirA123/OLP_MERN" },
+  { title: "Diabetes Medication Prediction", category: "Machine Learning", description: "A machine learning project exploring diabetes medication prediction.", image: ml, url: "https://github.com/HashirA123/diabetes-medication" },
+  { title: "Flexiform", category: "Capstone", description: "My 2023 software engineering capstone project.", image: capstone, url: "https://github.com/HashirA123/Flexiform" },
+  { title: "YouTube Auto Ad-Skipper", category: "Automation", description: "A tool that automates skipping YouTube ads.", image: adSkipper, url: "https://github.com/HashirA123/Ad-Skipper" },
+  { title: "ViVi Art Gallery", category: "Database Systems", description: "A database management system for an art gallery.", image: dbms, url: "https://github.com/HashirA123/ViVi-Art-Gallery-DBMS" },
+  { title: "YYC Adventures", category: "CalgaryHacks 2020", description: "A project built for CalgaryHacks 2020.", image: yycAdventure, url: "https://devpost.com/software/yyc-adventures" },
+  { title: "EduConnect", category: "CalgaryHacks 2021", description: "A project built for CalgaryHacks 2021.", image: eduConnect, url: "https://devpost.com/software/educonnect-vu8xic" },
+];
 
+export function ProjectGrid({ featured = false }) {
   return (
-    <section className="projects page">
-      <h1 data-aos="fade-up">My Projects</h1>
-      <p className="text" data-aos="fade-up" data-aos-delay="100">
-        A few selected projects spanning full-stack development, data systems, and machine learning.
-      </p>
-      <div className="boxes" data-aos="fade-up" data-aos-delay="160">
-        <Carousel
-          swipeable
-          draggable
-          showDots
-          arrows
-          responsive={responsive}
-          ssr
-          infinite
-          autoPlay
-          autoPlaySpeed={3500}
-          pauseOnHover
-          transitionDuration={500}
-          containerClass="carousel-container"
-          dotListClass="custom-dot-list-style"
-        >
-          <ProjectBox title="Capstone Project 2023" img={capstone} link="https://github.com/HashirA123/Flexiform" />
-          <ProjectBox title="ScholarSpace" img={scholarSpace} link="https://github.com/HashirA123/OLP_MERN" />
-          <ProjectBox
-            title="ML Playground (Docker image)"
-            img={mlPlayground}
-            link="https://hub.docker.com/repository/docker/hashira123/ml_playground/general"
-          />
-          <ProjectBox title="Youtube Auto Ad-Skipper" img={adSkipper} link="https://github.com/HashirA123/Ad-Skipper" />
-          <ProjectBox title="ViVi-Art-Gallery DBMS" img={dbms} link="https://github.com/HashirA123/ViVi-Art-Gallery-DBMS" />
-          <ProjectBox title="Diabetes Medication Prediction" img={ml} link="https://github.com/HashirA123/diabetes-medication" />
-          <ProjectBox title="CalgaryHacks 2020" img={yycAdventure} link="https://devpost.com/software/yyc-adventures" />
-          <ProjectBox title="CalgaryHacks 2021" img={eduConnect} link="https://devpost.com/software/educonnect-vu8xic" />
-        </Carousel>
-      </div>
+    <div className="project-grid">
+      {(featured ? projects.slice(0, 3) : projects).map(({ title, category, description, image, url }) => (
+        <article key={title}>
+          <a className="project-card" href={url} target="_blank" rel="noopener noreferrer">
+            <div className="project-image"><img src={image} alt="" loading="lazy" /></div>
+            <div className="project-body">
+              <p className="eyebrow">{category}</p>
+              <h3>{title} <ArrowOutward /></h3>
+              <p>{description}</p>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function Projects() {
+  return (
+    <section className="container inner-page">
+      <header className="page-intro">
+        <p className="eyebrow">Portfolio</p>
+        <h1>Projects<span>.</span></h1>
+        <p>A collection of my work in machine learning, full-stack development, and data systems.</p>
+      </header>
+      <ProjectGrid />
     </section>
   );
 }

@@ -1,28 +1,35 @@
-import React from "react";
-import myFace from "../images/myFace.jpg";
-import "../styles/Experience.css";
+import ArrowOutward from "@mui/icons-material/ArrowOutward";
+import portrait from "../images/myFace.jpg";
+
+const experience = [
+  ["TD Bank", "Machine Learning Scientist Intern", "Sep 2026 – Present", "Built a Databricks-based framework to automate machine learning experiments and evaluated causal foundation models against traditional causal meta-learners."],
+  ["AltaML", "Machine Learning Engineer Intern", "May – Aug 2025", "Prototyped LLM workflows to extract structured data from medical documents and built automated evaluations against FHIR-standardized data."],
+  ["AltaML", "Machine Learning Engineer Intern", "May – Sep 2023", "Built a Python and SQL forecasting pipeline for customer turnover and improved classification accuracy from 72% to 83%."],
+  ["Mobility Quotient", "Software Engineer Intern", "May 2021 – May 2022", "Built data pipelines for e-commerce catalogs and wrote end-to-end Selenium tests."],
+];
 
 function Experience() {
   return (
-    <section className="about page">
-      <h1 data-aos="fade-up">About Me</h1>
-      <div className="about-flex">
-        <div className="left-content" data-aos="fade-right" data-aos-delay="120">
-          <img src={myFace} alt="Hashir Ahmed portrait" />
-        </div>
-        <div className="right-content" data-aos="fade-left" data-aos-delay="220">
-          <p>
-            Hey there! I'm Hashir, a Machine Learning engineer, currently working with algorithmic recourse for AI.
-            I primarily work with Python and related ML libraries like PyTorch, scikit-learn, and TensorFlow. 
-            I also have experience with Java, C++, and JavaScript, and I enjoy exploring new technologies and frameworks.
-          </p>
-          <p>
-            Beyond coding, I love solving real-world problems where creativity and engineering meet.
-            I am always eager to learn new things and meet new people in the world of AI and software development.
-          </p>
-          <p>Please feel free to reach out — I'd be glad to connect.</p>
-        </div>
+    <section className="container inner-page">
+      <div className="about-intro">
+        <header className="page-intro">
+          <p className="eyebrow">About me</p>
+          <h1>Hi, I’m Hashir<span>.</span></h1>
+          <p>I’m a machine learning engineer and a master’s student in Electrical and Computer Engineering at the University of Waterloo. I research robust algorithmic recourse and benchmark methods that suggest steps people can take to change a model’s decision.</p>
+          <p>I studied software engineering at the University of Calgary and have worked on causal ML, LLM evaluation, and data pipelines.</p>
+          <a className="button button-outline" href={`${process.env.PUBLIC_URL}/Hashir-Ahmed_Resume.pdf`}>View résumé <ArrowOutward /></a>
+        </header>
+        <img className="portrait" src={portrait} alt="Hashir Ahmed" />
       </div>
+      <section className="experience">
+        <h2>Experience<span>.</span></h2>
+        {experience.map(([company, role, dates, description]) => (
+          <article className="experience-row" key={dates}>
+            <div><p className="eyebrow">{company}</p><p>{dates}</p></div>
+            <div><h3>{role}</h3><p>{description}</p></div>
+          </article>
+        ))}
+      </section>
     </section>
   );
 }
