@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import PointerTint from "./components/PointerTint";
 import Home from "./sections/Home";
 import Experience from "./sections/Experience";
 import Projects from "./sections/Projects";
@@ -39,6 +40,7 @@ function App() {
 
   return (
     <>
+      <PointerTint />
       <a className="skip-link" href="#main">Skip to content</a>
       <Navbar theme={theme} onToggleTheme={() => setTheme(theme === "light" ? "dark" : "light")} />
       <main id="main" className="page-shell" tabIndex={-1}>

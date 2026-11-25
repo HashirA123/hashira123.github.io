@@ -19,25 +19,6 @@ const projects = [
   { title: "EduConnect", category: "CalgaryHacks 2021", description: "A project built for CalgaryHacks 2021.", image: eduConnect, url: "https://devpost.com/software/educonnect-vu8xic" },
 ];
 
-function ProjectGrid() {
-  return (
-    <div className="project-grid">
-      {projects.map(({ title, category, description, image, url }) => (
-        <article className="reveal" key={title}>
-          <a className="project-card" href={url} target="_blank" rel="noopener noreferrer">
-            <div className="project-image"><img src={image} alt="" loading="lazy" /></div>
-            <div className="project-body">
-              <p className="eyebrow">{category}</p>
-              <h3>{title} <ArrowOutward /></h3>
-              <p>{description}</p>
-            </div>
-          </a>
-        </article>
-      ))}
-    </div>
-  );
-}
-
 function Projects() {
   return (
     <section id="projects" className="container content-section" aria-labelledby="projects-heading">
@@ -45,7 +26,21 @@ function Projects() {
         <h2 id="projects-heading">Projects</h2>
         <p>Machine learning experiments, full-stack applications, and data systems.</p>
       </header>
-      <ProjectGrid />
+      <ul className="project-list">
+        {projects.map(({ title, category, description, image, url }) => (
+          <li className="reveal" key={title}>
+            <a className="project-row" href={url} target="_blank" rel="noopener noreferrer">
+              <div className="project-image"><img src={image} alt="" loading="lazy" /></div>
+              <div className="project-body">
+                <p className="eyebrow">{category}</p>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </div>
+              <ArrowOutward />
+            </a>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
